@@ -4,86 +4,134 @@
     outline: 0;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    background-color: #f4d03f;
-    color: #2c3e50;
-    font-weight: 300;
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --surface: #fff;
+    --surface-subtle: #f8fafc;
+    --success: #16a34a;
+    --danger: #dc2626;
 }
 
-.main-container {
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-size: 16px;
+    background: #f1f5f9;
+    color: var(--text);
+    font-weight: 400;
+}
+
+.maincontainer {
     width: 100%;
+    min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 20%;
+    grid-template-columns: minmax(0, 70%) minmax(22rem, 30%);
     overflow-x: hidden;
 }
 
 .col1 {
-    padding: 0 0.5rem;
+    background: var(--surface);
+    color: var(--text);
+    padding: 0 0.75rem 0.75rem;
 }
 
 .col2 {
-    padding: 0 0.5rem;
+    background: var(--surface-subtle);
+    color: var(--text);
+    padding: 0 0.75rem 0.75rem;
+    box-shadow: -8px 0 24px rgba(15, 23, 42, 0.08);
 }
+
+/*------------------------- Column 1 -------------------------*/
 
 .header {
     display: flex;
-    padding: 0.5em;
-}
-
-.header h1 {
-    font-size: 30px;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: 25px;
     font-weight: 500;
     letter-spacing: 0.2rem;
+}
+
+.search-container {
+    display: flex;
+    flex: 1;
+    gap: 0.5rem;
+    min-width: 12rem;
+    padding: 0 0.5rem;
+}
+
+.search-container input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+}
+
+.btn-search {
+    background-color: var(--primary);
 }
 
 .table-container {
     height: 80vh;
     border-radius: 10px;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #f7dc6f;
+    background-color: var(--surface);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
 }
 
 thead {
     position: sticky;
     top: 0;
-    background-color: #f1c40f;
+    z-index: 1;
+    background: var(--primary-dark);
+    color: var(--surface);
 }
 
 th {
-    padding: 0.1rem 0.5rem;
+    padding: 0.65rem 0.5rem;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
-    font-weight: 300;
+    letter-spacing: 0.08rem;
+    font-weight: 700;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 tbody tr {
-    transform: all 0.1s ease-in-out;
+    transition: background-color 0.12s ease, color 0.12s ease;
+    color: var(--text);
 }
 
 td {
-    padding: 0.1rem 0.5rem;
+    padding: 0.55rem 0.5rem;
     text-align: center;
-    font-size: 16px;
-    border-bottom: 1px solid #d4ac0d;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f9e79f;
+    background-color: var(--surface-subtle);
 }
 
 tbody tr:hover {
-    background-color: #f7b731;
-    color: #000000;
+    background-color: #eff6ff;
+    color: var(--text);
 }
 
+/*------------------------- Column 2 -------------------------*/
 .col2-header-container {
     display: flex;
     justify-content: space-between;
@@ -91,42 +139,85 @@ tbody tr:hover {
 }
 
 .col2-header h2 {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 0.1rem;
+    color: var(--text);
 }
 
 .col2-header p {
     font-size: 11px;
-    font-weight: 300;
-    color: #b7950b;
+    font-weight: 400;
+    color: var(--muted);
 }
+
+.class-action-btn-container {
+    display: flex;
+    float: right;
+}
+
+/*------------------------- Buttons -------------------------*/
 
 .button {
-    display: block;
-    padding: 0.5rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 5rem;
+    padding: 0.55rem 0.9rem;
     font-size: 14px;
-    background-color: #f39c12;
-    border: none;
-    border-radius: 10px;
-    color: white;
+    font-weight: 700;
+    letter-spacing: 0.03rem;
+    background: var(--primary);
+    border: 1px solid transparent;
+    border-radius: 7px;
+    color: var(--surface);
     cursor: pointer;
-    width: 4rem;
     margin: 0.2rem;
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.12);
 }
 
-.btn.add {
-    background-color: #d4ac0d;
+.button:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(15, 23, 42, 0.16);
+}
+
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+
+.button:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 2px;
+}
+
+.btn-add {
+    background: var(--primary);
     margin-left: 1rem;
 }
 
-.btn-edit {
-    background-color: #f7b731;
+.btn-search {
+    background: var(--primary);
 }
 
-.btn-delete, .btn-cancel {
-    background-color: #f1c40f;
+.btn-edit {
+    background: #d97706;
 }
+
+.btn-delete {
+    background: var(--danger);
+}
+
+.btn-save {
+    background: var(--success);
+}
+
+.btn-cancel {
+    background: #64748b;
+}
+
+/*------------------------- textbox -------------------------*/
 
 .textbox {
     position: relative;
@@ -138,11 +229,12 @@ tbody tr:hover {
     width: 100%;
     height: 80%;
     border: none;
-    color: #f7dc6f;
-    background-color: transparent;
+    color: var(--text);
     padding-top: 20px;
     font-size: 18px;
     outline: none;
+    text-transform: uppercase;
+    background-color: transparent;
 }
 
 .txtbox-label {
@@ -152,8 +244,7 @@ tbody tr:hover {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    border-bottom: 1px solid #b7950b;
-    text-transform: uppercase;
+    border-bottom: 1px solid #cbd5e1;
 }
 
 .txtbox-label::after {
@@ -161,8 +252,9 @@ tbody tr:hover {
     position: absolute;
     width: 100%;
     height: 100%;
-    bottom: -2px;
-    border-bottom: 2px solid #f39c12;
+    bottom: -1;
+    left: 0;
+    border-bottom: 2px solid var(--primary);
     transform: translateX(-100%);
     transition: all 0.3s ease;
 }
@@ -170,21 +262,30 @@ tbody tr:hover {
 .placeholder {
     position: absolute;
     font-size: 18px;
-    bottom: 0;
+    bottom: 7px;
     left: 0;
     transition: all 0.3s ease;
+    color: var(--muted);
 }
 
-.textbox input:focus+ .txtbox-label .placeholder,
-.textbox input:valid+ .txtbox-label .placeholder {
+.textbox input:focus+.txtbox-label .placeholder,
+.textbox input:valid+.txtbox-label .placeholder,
+.option-box select:focus+.txtbox-label .placeholder,
+.option-box select:valid+.txtbox-label .placeholder
+{
     transform: translateY(-150%);
     font-size: 12px;
+    color: var(--primary-dark);
 }
 
-.textbox input:focus+ .txtbox-label::after,
-.textbox input:valid+ .txtbox-label::after {
-    transform: translateX(0%);
+.textbox input:focus+.txtbox-label::after,
+.textbox input:valid+.txtbox-label::after,
+.option-box select:focus+.txtbox-label::after,
+.option-box select:valid+.txtbox-label::after
+{
+    transform: translateX(0)
 }
+
 
 .display-none {
     display: none;
@@ -195,5 +296,35 @@ tbody tr:hover {
 }
 
 .placeholder span {
-    color: #000000;
+    color: var(--text);
+}
+
+/* -------------------- Option Box -------------------- */
+.option-box{
+
+    position: relative;
+    margin: 1rem;
+    overflow: hidden;
+}
+
+.option-box select {
+    width: 100%;
+    height: 58px;
+    padding: 20px 1.8rem 0 0;
+    border: none;
+    color: var(--text);
+    background-color: transparent;
+    font: inherit;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+.option-box select:disabled {
+    color: transparent;
+}
+
+.option-box select option {
+    color: var(--text);
+    background-color: var(--surface);
 }
